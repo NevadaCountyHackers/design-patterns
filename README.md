@@ -8,9 +8,12 @@ Design Patterns: Abstract Factory
 3. `$ mkdir [:username]` // replace [:username] with your Github username
 
 
-# Structure
+## Folder Structure
 
 -> [:username]
+
 	-> Examples
+
 	-> Tests
+
 	-> Notes

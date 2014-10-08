@@ -1,42 +1,44 @@
 class TicketBuilder
-  attr_accessor :ticket
-
-  def initialize
-    @ticket = Ticket.new
-  end
+  attr_reader :url, :description, :browser, :type
 
   def set_url url
-    @ticket.url = url
+    @url = url
   end
 
   def set_description description
-    @ticket.description = description
+    @description = description
   end
 
   def set_browser browser
-    @ticket.browser = browser
+    @browser = browser
+  end
+
+  def get_ticket
+    Ticket.new(url, description, browser, type)
   end
 end
 
 class BugTicketBuilder < TicketBuilder
   def initialize
-    super
-    @ticket.type = 'bug'
+    @type = 'bug'
   end
 end
 
 class FeatureTicketBuilder < TicketBuilder
   def initialize
-    super
-    @ticket.type = 'feature'
+    @type = 'feature'
   end
 end
 
 class Ticket
-  attr_accessor :url, :description, :browser, :type
+  attr_reader :url, :description, :browser, :type
   attr_reader :created_at
 
-  def initialize
+  def initialize(url, description, browser, type)
+    @url = url
+    @description = description
+    @browser = browser
+    @type = type
     @created_at = Time.now
   end
 end
@@ -47,6 +49,6 @@ class Application
     builder.set_url('http://www.example.com')
     builder.set_description('typo on line 2')
     builder.set_browser('MSIE')
-    builder.ticket
+    builder.get_ticket
   end
 end
